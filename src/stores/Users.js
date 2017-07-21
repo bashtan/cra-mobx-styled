@@ -4,16 +4,17 @@ class Users {
   constructor() {
     this._list = [];
     extendObservable(this, {
-      list: this._list.map(user => ({
+      list: [],
+      count: computed(() => this.list.length),
+      data: computed(() => this.list.map(user => ({
         ...user,
-          age: computed(() => user.dateOfBirth.getUTCFullYear() - (new Date()).getUTCFullYear())
-      })),
-      count: computed(() => this.list.length)
+        age: computed(() => (new Date()).getUTCFullYear() - user.dateOfBirth.getUTCFullYear())
+      }))),
     });
   }
 
   addUser = ({name, dateOfBirth}) => {
-    this._list.push(new User({name, dateOfBirth}))
+    this.list.push(new User({name, dateOfBirth}))
   }
 }
 

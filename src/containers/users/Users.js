@@ -13,7 +13,7 @@ class Users extends Component {
       <div>
         <div>{`Users count: ${users.count}`}</div>
         <ul>
-          {!!users && users.list.map(user => <li key={user.id}><User {...user}/></li>)}
+          {!!users && users.data.map(user => <li key={user.id}><User {...user}/></li>)}
         </ul>
       </div>
     );
