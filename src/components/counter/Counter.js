@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class Counter extends Component{
   render(){
     const {increment, decrement, isOdd, count} = this.props;
+
     return  <div>
       Counter:
       <div>

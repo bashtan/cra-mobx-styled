@@ -1,18 +1,24 @@
-import { extendObservable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 class Users {
+  @observable list;
+
   constructor() {
-    this._list = [];
-    extendObservable(this, {
-      list: [],
-      count: computed(() => this.list.length),
-      data: computed(() => this.list.map(user => ({
-        ...user,
-        age: computed(() => (new Date()).getUTCFullYear() - user.dateOfBirth.getUTCFullYear())
-      }))),
-    });
+    this.list = [];
   }
 
+  @computed get count() {
+    return this.list.length;
+  }
+
+  @computed get data() {
+    return this.list.map(user => ({
+      ...user,
+      age: computed(() => (new Date()).getUTCFullYear() - user.dateOfBirth.getUTCFullYear())
+    }))
+  }
+
+  @action('add user')
   addUser = ({name, dateOfBirth}) => {
     this.list.push(new User({name, dateOfBirth}))
   }
@@ -26,4 +32,6 @@ class User{
   }
 }
 
-export default Users;
+const users = new Users();
+export default users;
+export { Users };

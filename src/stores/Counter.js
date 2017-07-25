@@ -1,20 +1,27 @@
-import { extendObservable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 class Counter {
+  @observable count;
+
   constructor() {
-    extendObservable(this, {
-      count: 0,
-      isOdd: computed(() => this.count % 2 === 1)
-    });
+    this.count = 0;
   }
 
+  @computed get isOdd() {
+    return this.count % 2 === 1;
+  }
+
+  @action('increment')
   increment = () => {
     this.count++;
   };
 
+  @action('decrement')
   decrement = () => {
     this.count--;
   };
 }
 
-export default Counter;
+const counter = new Counter();
+export default counter;
+export { Counter };

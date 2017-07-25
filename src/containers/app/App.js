@@ -5,14 +5,15 @@ import CreateUser from '../../components/createUser/CreateUser';
 
 import List from '../list/List';
 import Users from '../users/Users';
-import { observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import {AppContainer, AppIntro} from './styles';
 import './App.css';
 
+@inject("counter", "users") @observer
 class App extends Component {
   render() {
     const {counter, users} = this.props;
-//  <CreateUser onAdd={users.addUser}/>
+
     return (
       <AppContainer>
         <Header/>
@@ -20,12 +21,12 @@ class App extends Component {
           Mobx App
         </AppIntro>
         <List/>
-        <Counter {...counter}/>
-
+        <Counter increment={counter.increment} decrement={counter.decrement} isOdd={counter.isOdd} count={counter.count}/>
+        <CreateUser onAdd={users.addUser}/>
         <Users users={users}/>
       </AppContainer>
     );
   }
 }
 
-export default observer(App);
+export default App;
