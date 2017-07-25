@@ -8,10 +8,10 @@ class Users extends Component {
 
   render() {
     const { users } = this.props;
-
+// <div>{`Users count: ${users.count}`}</div>
     return (
       <div>
-        <div>{`Users count: ${users.count}`}</div>
+
         <ul>
           {!!users && users.data.map(user => <li key={user.id}><User {...user}/></li>)}
         </ul>

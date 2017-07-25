@@ -12,7 +12,7 @@ import './App.css';
 class App extends Component {
   render() {
     const {counter, users} = this.props;
-
+//  <CreateUser onAdd={users.addUser}/>
     return (
       <AppContainer>
         <Header/>
@@ -21,7 +21,7 @@ class App extends Component {
         </AppIntro>
         <List/>
         <Counter {...counter}/>
-        <CreateUser onAdd={users.addUser}/>
+
         <Users users={users}/>
       </AppContainer>
     );
